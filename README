@@ -51,5 +51,6 @@ Or you can use the Tickets/Ticket and Users/User classes, which require the ZenA
 TODO:
 
 * Deal with exceptions (rest-client)
-* Show user tickets instead of all tickets
 * Test if there is a user (session) before all actions (less '/' of course)
+* Implement Tickets::list_by_requester_id using X-ON-BEHALF-OF header
+* Consider pagination (some calls return 15 results per requisition)

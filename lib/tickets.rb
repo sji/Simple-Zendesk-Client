@@ -26,7 +26,7 @@ class Tickets
   
   def list
     tickets = []
-    xml = @resource.list 'tickets'
+    xml = @resource.list('tickets')
     doc = Hpricot::XML xml
     (doc/'tickets/ticket').each do |el| 
       params = {}
@@ -38,6 +38,10 @@ class Tickets
     tickets
   end
   
+  def list_by_requester_id id
+    list.reject { |ticket| ticket.requester_id != id  }
+  end
+
   def update id, xml_text
     @resource.update 'tickets', id, xml_text
   end

@@ -26,7 +26,7 @@ get '/tickets' do
   redirect '/' if session[:user].nil?
   @user = session[:user].email
   @requester_id = session[:user].id
-  @tickets = Tickets.new.list
+  @tickets = Tickets.new.list_by_requester_id session[:user].id
   haml :tickets
 end
 
