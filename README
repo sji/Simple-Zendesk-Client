@@ -8,4 +8,17 @@ You can create a Zendesk account by signing up at http://www.zendesk.com/
 
 In the lib folder there is an implementation of Zendesk Rest API (tickets and users) using rest-client (http://github.com/archiloque/rest-client) and hpricot (https://github.com/hpricot/hpricot).
 
+===
+
+Usage:
+
+resource = ZenAPI.new 'https://your_help_desk.zendesk.com/', 'your_user', 'password'
+resource.list 'tickets'
+resource.list 'users'
+resource.create 'tickets', xml
+resource.update 'tickets', id, xml
+resource.delete 'tickets', id
+
+====
+
 Implemented with Sinatra (http://www.sinatrarb.com/).

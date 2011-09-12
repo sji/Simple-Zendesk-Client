@@ -1,0 +1,68 @@
+%div{:style => 'padding: 10px;'}
+	%p
+		%a{:href => '/'} Go back to Home
+	%h1 Create a Ticket
+	%form{:action => 'tickets', :method => 'post'}
+		%input{:type => 'hidden', :name => 'requester-id', :value => @requester_id}
+		%p
+			Requester
+			= @user
+		%p
+			Subject
+			%br/
+			%input{:type => 'text', :name => 'subject', :size => '54', :value => ''}
+		%p
+			%span
+				Status
+				%select{:name => 'status-id'}
+					%option{:value => '0'} New
+					%option{:value => '1'} Open
+					%option{:value => '2'} Pending
+					%option{:value => '3'} Solved
+				
+			%span
+				Type
+				%select{:name => 'ticket-type-id'}
+					%option{:value => '0'} -
+					%option{:value => '1'} Question
+					%option{:value => '2'} Incident
+					%option{:value => '3'} Problem
+					%option{:value => '4'} Task
+				
+			%span
+				Priority
+				%select{:name => 'priority-id'}
+					%option{:value => '0'} -
+					%option{:value => '1'} Low
+					%option{:value => '2'} Normal
+					%option{:value => '3'} High
+					%option{:value => '4'} Urgent
+		%p
+			Description (required)
+			%br/
+			%textarea{:name => 'description', :cols => '40', :rows => '6'}
+		%p
+			Tags
+			%br/
+			%input{:type => 'text', :name => 'current-tags', :size => '54', :value => ''}
+		%p
+			%input{:type => 'submit', :name => 'submit', :value => 'Create'}
+
+	%br/
+	%p 
+		%h2 Tickets
+	- @tickets.reverse.each do |ticket|
+		%div{:style => 'padding: 10px;'}
+			%h3 Ticket
+			%p
+				%b Subject
+				%br/
+				= ticket.subject
+			%p
+				%b Description
+				%br/
+				= ticket.description
+			%p
+				%b Status
+				%br/
+				= ticket.get_status

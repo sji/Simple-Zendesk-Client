@@ -1,0 +1,25 @@
+%div{:style => 'padding: 10px;'}
+	%p
+		%form{:action => 'users'}
+			%p
+				Inform Your Email (if you have already created tickets before)
+				%br/
+				%input{:type => 'text', :name => 'email', :valeu => ''}
+			%p
+				%input{:type => 'submit', :name => 'submit', :value => 'Send'}
+	%p
+		Or start by typing the info below:
+	%p
+		%form{:action => 'users', :method => 'post'}
+			%p
+				Name
+				%br/
+				%input{:type => 'text', :name => 'name', :valeu => ''}
+			%p
+				Email
+				%br/
+				%input{:type => 'text', :name => 'email', :valeu => ''}
+			%p
+				%input{:type => 'submit', :name => 'submit', :value => 'Send'}
+	%p
+		%pre= h(@users.inspect)

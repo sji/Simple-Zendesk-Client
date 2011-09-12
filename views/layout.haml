@@ -1,0 +1,12 @@
+!!! XML
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+	%head
+		%link(rel="stylesheet" type="text/css" href="stylesheet.css")
+%body
+	- if !session[:error_message].nil?
+		%div.error{:style => 'color: red; padding: 10px;'}= print_message(:error_message)
+			
+	- if !session[:message].nil?
+		%div.message{:style => 'color: green; padding: 10px;'}= print_message(:message)
+	= yield

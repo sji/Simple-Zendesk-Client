@@ -1,0 +1,1 @@
+AGENT = {:user => 'your_user', :pwd => 'password'}
