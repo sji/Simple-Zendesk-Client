@@ -91,13 +91,10 @@ class Ticket
     </ticket>"
   end
   
-  def update_status! params
-    unless !params.has_key?('status') || params['status'].empty?
-      self.status_id = params['status']
-      Tickets.new.update self.nice_id, to_xml
-    else
-      false
-    end
+  def mark_as_solved!
+    # Status Id '3' - Solved
+    self.status_id = '3'
+    Tickets.new.update self.nice_id, to_xml
   end
   
   def validate

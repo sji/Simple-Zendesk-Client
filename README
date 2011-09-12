@@ -50,6 +50,6 @@ Or you can use the Tickets/Ticket and Users/User classes, which require the ZenA
 
 TODO:
 
-* Change status should be ajax/post
 * Deal with exceptions (rest-client)
 * Show user tickets instead of all tickets
+* Test if there is a user (session) before all actions (less '/' of course)

@@ -86,12 +86,10 @@
 						%span.name
 							Status
 						%br/
-						- unless ticket.requester_id == session[:user].id
-							%span.content
-								= ticket.get_status
-						- else
-							%select{:name => 'status-id', :onchange => "window.location = '/ticket?id=#{ticket.id}&status='+this.value;"}
-								%option{:value => '0', :selected => ticket.status_id == '0'} New
-								%option{:value => '1', :selected => ticket.status_id == '1' } Open
-								%option{:value => '2', :selected => ticket.status_id == '2' } Pending
-								%option{:value => '3', :selected => ticket.status_id == '3' } Solved
+						%span.content
+							= ticket.get_status
+						%br/
+						- if ticket.requester_id == session[:user].id
+							%form{:id => "status_form_#{ticket.nice_id}", :method => 'post', :action => "/tickets/#{ticket.nice_id}/mark_as_solved"}
+								%input{:type => 'hidden', :name => '_method', :value => 'put'}
+								%a{:href => '#', :onclick => "document.getElementById('status_form_#{ticket.nice_id}').submit(); return false;"} Mark as Solved
