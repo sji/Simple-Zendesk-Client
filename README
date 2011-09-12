@@ -2,15 +2,40 @@ Simple Zendesk Client that:
 
 1. Creates a user
 2. Creates a ticket with that user as requester
-3. Marks that ticket as solved (coming)
+3. Marks that ticket as solved (coming, but works for the API)
 
 You can create a Zendesk account by signing up at http://www.zendesk.com/
 
 In the lib folder there is an implementation of Zendesk Rest API (tickets and users) using rest-client (http://github.com/archiloque/rest-client) and hpricot (https://github.com/hpricot/hpricot).
 
+Implemented with Sinatra (http://www.sinatrarb.com/).
+
 ===
 
-Usage:
+To run:
+
+You need the sinatra and bundler gems installed.
+gem install bundler
+gem install sinatra 
+(if don't work, try sudo)
+
+Install dependencies with bundler:
+bundle install
+(or 'bundle install --path folder_name' to install to an alternate location)
+
+bundle exec ruby client.rb
+
+Go to your browser and access:
+http://localhost:4567/
+
+Or you can use shotgun for source file reloading (recommended for developing):
+bundle exec shotgun client.rb
+
+===
+
+Usage (implementation of Zendesk Rest API):
+
+require 'rest_client' 
 
 resource = ZenAPI.new 'https://your_help_desk.zendesk.com/', 'your_user', 'password'
 resource.list 'tickets'
@@ -19,6 +44,6 @@ resource.create 'tickets', xml
 resource.update 'tickets', id, xml
 resource.delete 'tickets', id
 
-====
+Or you can use the Tickets/Ticket and Users/User classes, which require the ZenAPi. In this case, just change how your user/pwd is informed (have a look at Tickets::initializer and Users::initializer). The classes provide ways to deal with the XML, which should be easier than accessing the ZenAPI directly.
 
-Implemented with Sinatra (http://www.sinatrarb.com/).
+====
