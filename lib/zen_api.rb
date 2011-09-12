@@ -29,6 +29,11 @@ class ZenAPI
     private_resource.get({ :params => params })
   end
   
+  def show resource, id
+    private_resource = RestClient::Resource.new "#{self.url}#{resource}/#{id}.xml", self.user, self.pass
+    private_resource.get
+  end
+  
   def update resource, id, xml_text
     private_resource = RestClient::Resource.new "#{self.url}#{resource}/#{id}.xml", self.user, self.pass
     private_resource.put xml_text, :content_type => :xml

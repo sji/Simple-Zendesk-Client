@@ -5,8 +5,10 @@
 		%link(rel="stylesheet" type="text/css" href="stylesheet.css")
 %body
 	- if !session[:error_message].nil?
-		%div.error{:style => 'color: red; padding: 10px;'}= print_message(:error_message)
+		%div.error
+			%h3= print_message(:error_message)
 			
 	- if !session[:message].nil?
-		%div.message{:style => 'color: green; padding: 10px;'}= print_message(:message)
+		%div.message
+			%h3= print_message(:message)
 	= yield

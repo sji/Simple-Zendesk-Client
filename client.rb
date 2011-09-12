@@ -22,6 +22,16 @@ get '/' do
   haml :index
 end
 
+get '/ticket' do
+  ticket = params.has_key?('id') ? Tickets.new.find_by_id(params['id']) : nil
+  if ticket && ticket.update_status!(params)
+    session[:message] = 'Ticket Updated!'
+  else
+    session[:error_message] = "Sorry, couldn't update ticket's status"
+  end
+  redirect '/tickets'
+end
+
 get '/tickets' do
   redirect '/' if session[:user].nil?
   @user = session[:user].email
@@ -50,7 +60,10 @@ get '/users' do
 end
 
 post '/users' do
-  if User.create!(params) && (user = Users.new.search_by_email(params[:email]))
+  if (user = Users.new.search_by_email(params[:email])) && user.email == params[:email]
+    session[:error_message] = "Sorry, email already exists, please choose a different one."
+    redirect '/'
+  elsif User.create!(params) && (user = Users.new.search_by_email(params[:email]))
     session[:user] = user
     redirect '/tickets'
   else

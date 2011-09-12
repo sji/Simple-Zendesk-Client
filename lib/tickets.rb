@@ -10,6 +10,20 @@ class Tickets
     @resource.create 'tickets', xml_text
   end
   
+  def find_by_id id
+    ticket = nil
+    xml = @resource.show 'tickets', id
+    doc = Hpricot::XML xml
+    (doc/'ticket').each do |el| 
+      params = {}
+      %w{ current-tags description nice-id priority-id requester-id status-id subject ticket-type-id }.each do |field|
+        params[field] = el.at(field).inner_html
+      end
+      ticket = Ticket.new(params)
+    end
+    ticket
+  end
+  
   def list
     tickets = []
     xml = @resource.list 'tickets'
@@ -22,6 +36,10 @@ class Tickets
       tickets << Ticket.new(params)
     end
     tickets
+  end
+  
+  def update id, xml_text
+    @resource.update 'tickets', id, xml_text
   end
 end
 
@@ -71,6 +89,15 @@ class Ticket
       <subject>#{self.subject}</subject>
       <ticket-type-id>#{self.ticket_type_id}</ticket-type-id>
     </ticket>"
+  end
+  
+  def update_status! params
+    unless !params.has_key?('status') || params['status'].empty?
+      self.status_id = params['status']
+      Tickets.new.update self.nice_id, to_xml
+    else
+      false
+    end
   end
   
   def validate

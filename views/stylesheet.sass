@@ -1,6 +1,88 @@
+@mixin border-radius($radius)
+	-moz-border-radius: $radius
+	-webkit-border-radius: $radius
+	border-radius: $radius
 body
-  font-size: 11px
-  font-family: "Lucida Grande", Helvetica, Arial
-  font-weight: normal
-  background: #e7e7e7
-  margin: 0px auto
+	font-size: 11px
+	font-family: Helvetica, Arial
+	font-weight: normal
+	background: #D9E1E9
+	margin: 0px auto
+
+div.error
+	background-color: #FF241C
+	color: #FFFFFF
+	padding: 10px
+
+div.message
+	@extend div.error
+	background-color: #089A10
+
+.tickets
+	h2.header
+		background-color: #727070
+		color: #FFFFFF
+		padding: 10px
+	.ticket
+		background-color: #FFFFFF
+		border: 2px solid #D48055
+		@include border-radius(.5em)
+		margin-bottom: 10px
+		h3.header
+			background-color: #FF8950
+			padding: 10px
+			color: #FFFFFF
+			margin-top: 0
+		div.body
+			padding: 0 10px
+			p.field
+				span.name
+					font-weight: bold
+
+.new_ticket
+	.ticket, .login, .new_user
+		background-color: #FFFFFF
+		border: 2px solid #707070
+		@include border-radius(.5em)
+		margin-bottom: 10px
+		h1.header, h3.header
+			background-color: #727070
+			padding: 10px
+			color: #FFFFFF
+			margin-top: 0
+		div.body
+			margin: 0 10px
+			p.field
+				span.content
+					color: gray
+					font-size: 12px
+				span.name
+					font-weight: bold
+				span.input input, span.textarea textarea
+					border:  1px solid #c7c7c7
+					color: gray
+					font-size: 12px
+					padding: 5px
+					width: 99%
+
+.login, .new_user
+	background-color: #FFFFFF
+	border: 2px solid #707070
+	@include border-radius(.5em)
+	margin-bottom: 10px
+	h3.header
+		background-color: #727070
+		padding: 10px
+		color: #FFFFFF
+		margin-top: 0
+	div.body
+		margin: 0 10px
+		p.field
+			span.name
+				font-weight: bold
+			span.input input
+				border:  1px solid #c7c7c7
+				color: gray
+				font-size: 12px
+				padding: 5px
+				width: 99%

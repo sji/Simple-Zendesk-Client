@@ -47,3 +47,9 @@ resource.delete 'tickets', id
 Or you can use the Tickets/Ticket and Users/User classes, which require the ZenAPi. In this case, just change how your user/pwd is informed (have a look at Tickets::initializer and Users::initializer). The classes provide ways to deal with the XML, which should be easier than accessing the ZenAPI directly.
 
 ====
+
+TODO:
+
+* Change status should be ajax/post
+* Deal with exceptions (rest-client)
+* Show user tickets instead of all tickets

@@ -1,23 +1,31 @@
 %div{:style => 'padding: 10px;'}
-	%p
-		%form{:action => 'users'}
-			%p
-				Inform Your Email (if you have already created tickets before)
-				%br/
-				%input{:type => 'text', :name => 'email', :valeu => ''}
-			%p
-				%input{:type => 'submit', :name => 'submit', :value => 'Send'}
-	%p
-		Or start by typing the info below:
-	%p
-		%form{:action => 'users', :method => 'post'}
-			%p
-				Name
-				%br/
-				%input{:type => 'text', :name => 'name', :valeu => ''}
-			%p
-				Email
-				%br/
-				%input{:type => 'text', :name => 'email', :valeu => ''}
-			%p
-				%input{:type => 'submit', :name => 'submit', :value => 'Send'}
+	%div.login
+		%h3.header Let's create a ticket!
+		%div.body
+			%form{:action => 'users'}
+				%p.field
+					%span.name
+						Inform Your Email (if you have already created tickets before)
+					%br/
+					%span.input
+						%input{:type => 'text', :name => 'email', :valeu => ''}
+				%p.submit
+					%input{:type => 'submit', :name => 'submit', :value => 'Send'}
+	%div.new_user
+		%h3.header Or start by typing the info below:
+		%div.body
+			%form{:action => 'users', :method => 'post'}
+				%p.field
+					%span.name
+						Name
+					%br/
+					%span.input
+						%input{:type => 'text', :name => 'name', :valeu => ''}
+				%p.field
+					%span.name
+						Email
+					%br/
+					%span.input
+						%input{:type => 'text', :name => 'email', :valeu => ''}
+				%p.submit
+					%input{:type => 'submit', :name => 'submit', :value => 'Send'}
